@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Post;
 use Illuminate\Http\Request;
+use DB;
 
 class PostsController extends Controller
 {
@@ -13,7 +14,11 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+       // $posts = Post::orderBy('title','desc')->get();
+       // $post = Post::where('title', 'Post Two')->take(1)->get();
+       // $posts = DB::select('SELECT * FROM `posts`'); 
+       $posts = Post::orderBy('title','desc')->paginate(10);
+        return view('posts.index')->with('posts', $posts);
     }
 
     /**
@@ -45,7 +50,8 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+        return view('posts.show')->with('post', $post);
     }
 
     /**
