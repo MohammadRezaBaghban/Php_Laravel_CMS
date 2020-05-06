@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Create Post</h1>
-    <form method="post" action="{{ route('posts.store') }}">
+    <h1>Edit Post</h1>
+    <form method="patch" action="{{ route('posts.update', $post->id) }}">
+        @csrf
+        @method('PATCH')
         <div class="form-group">
             @csrf            
             <label for="title">Title</label>
