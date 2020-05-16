@@ -9,5 +9,10 @@
     <hr>
     <small>Written on {{$post->created_at}}</small>
     <hr>
-    <a href="/posts/{$post->}/edit" class="btn btn-default">Edit</a>
+    <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a>
+    <form method="POST" action="{{ route('posts.destroy',  $post->id) }}" class="float-right">
+        @method('DELETE')
+        @csrf
+        <button type="submit" class="btn btn-danger" class="float-right">Delete</button>
+    </form>
 @endsection
