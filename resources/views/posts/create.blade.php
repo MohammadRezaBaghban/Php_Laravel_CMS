@@ -1,3 +1,4 @@
+@auth
 @extends('layouts.app')
 
 @section('content')
@@ -15,3 +16,4 @@
         <button type="submit" class="btn btn-primary">Submit</button>
  </form>
 @endsection
+@endauth
