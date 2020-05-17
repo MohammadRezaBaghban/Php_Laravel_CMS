@@ -24,3 +24,7 @@ Route::resource('posts', 'PostsController');
 Route::resource('editor', 'CKEditorController');
 Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
 Route::delete('/posts/{id}', 'App\Http\Controllers\PostsController@destroy')->name('posts.destroy');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
