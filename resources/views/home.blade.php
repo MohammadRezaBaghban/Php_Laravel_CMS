@@ -16,19 +16,26 @@
 
                     <a href="/posts/create" class="btn btn-primary">Create Post<a>
                     <h3>Your Blog Posts</h3>
+                    @if(count($posts) > 0)
                     <table class="table table-stripped">
-                        <tr>
-                            <td>Title</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                            <tr>
+                                <td>Title</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
                         @foreach ($posts as $post)
                             <tr>
                                 <td>{{$post->title}}</td>
-                                <td><p>{{$post->body}}</p></td>
-                                <td><a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a></td>
+                                <td><a href="/posts/{{$post->id}}/edit" class="btn btn-dark">Edit</a></td>
+                                <td><form method="POST" action="{{ route('posts.destroy',  $post->id) }}" class="float-right">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger" class="float-right">Delete</button>
+                                </form></p></td>
                             </tr> 
                         @endforeach
+                    </table>
+                    @endif
                 </div>
             </div>
         </div>
