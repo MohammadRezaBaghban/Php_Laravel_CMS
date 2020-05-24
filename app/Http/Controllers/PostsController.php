@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use DB;
 
 class PostsController extends Controller
@@ -125,12 +126,36 @@ class PostsController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'summary-ckeditor' => 'required'
+            'summary-ckeditor' => 'required',
+            'cover_image' => 'image|nullable|max:1999'
         ]);
+
+        //Handle FileUpload
+        if ($request->hasfile('cover_image')){
+
+            //Get file name with Extension
+            $fileNameWithExt = $request -> file('cover_image')->getClientOriginalName();
+
+            //Get Just FileName
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+            //Get Just FileExtension
+            $fileExtension = $request->file('cover_image')->getClientOriginalExtension();
+
+            //File Name To Store
+            $fileNameToStore = $fileName.'_'.time().'.'.$fileExtension;
+
+            //Upload Image
+            $path = $request->file('cover_image')->storeAs('public/cover_image',$fileNameToStore);
+        }        
+
         //Edit Post
         $post = Post::find($id);
         $post->title = $request->input('title');
         $post->body = $request->input('summary-ckeditor');
+        if ($request->hasfile('cover_image')){
+            $post->cover_image = $fileNameToStore;
+        }
         $post->save();
 
         return redirect('/posts ')->with('success', 'Post updated');    }
@@ -148,6 +173,10 @@ class PostsController extends Controller
         // check for correct user 
         if(auth()->user()->id !==$post->user_id){
             return redirect('/posts')->with('error', 'Unauthorized Page');
+        }
+
+        if($post->cover_image != 'noimage.jpg'){
+            Storage::delete('public/cover_images/'.$post->cover_image);
         }
         
         $post->delete();
