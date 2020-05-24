@@ -14,6 +14,6 @@
             <textarea class="form-control" id="summary-ckeditor" name="summary-ckeditor" placeholder="Body Text"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
- </form>
+    </form>
 @endsection
 @endauth
