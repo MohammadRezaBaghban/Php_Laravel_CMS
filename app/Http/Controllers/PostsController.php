@@ -45,13 +45,39 @@ class PostsController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'summary-ckeditor' => 'required'
+            'summary-ckeditor' => 'required',
+            'cover_image' => 'image|nullable|max:1999'
         ]);
+
+        //Handle FileUpload
+        if ($request->hasfile('cover_image')){
+
+            //Get file name with Extension
+            $fileNameWithExt = $request -> file('cover_image')->getClientOriginalName();
+
+            //Get Just FileName
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+            //Get Just FileExtension
+            $fileExtension = $request->file('cover_image')->getClientOriginalExtension();
+
+            //File Name To Store
+            $fileNameToStore = $fileName.'_'.time().'.'.$fileExtension;
+
+            //Upload Image
+            $path = $request->file('cover_image')->storeAs('public/cover_image',$fileNameToStore);
+        }
+        else
+        {
+            $fileNameToStore = 'noimage.jpg';
+        }
+
         //Create Post
         $post = new Post();
         $post->title = $request->input('title');
         $post->body = $request->input('summary-ckeditor');
         $post->user_id = auth()->user()->id;
+        $post->cover_image = $fileNameToStore;
         $post->save();
 
         return redirect('/posts ')->with('success', 'Post Created');
