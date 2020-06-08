@@ -3,7 +3,7 @@
 @section('content')
 
 <br><a href="/posts" class="btn btn-primary">Go back</a><br><br>
-<img  style="width:500px;git" src="/storage/cover_image/{{$post->cover_image}}">
+<img style="width:300px;git" src="/storage/cover_image/{{$post->cover_image}}">
 <br><br>
     <h1>{{$post->title}}</h1>
     <div>   
