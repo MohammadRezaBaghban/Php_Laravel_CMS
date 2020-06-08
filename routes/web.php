@@ -15,18 +15,18 @@ use Illuminate\Support\Facades\Route;
 
 
 
+Auth::routes();
+
+Route::resource('posts', 'PostsController');
+Route::resource('editor', 'CKEditorController');
 
 Route::get('/', 'PagesController@index' );
 Route::get('/about', 'PagesController@about' );
 Route::get('/services', 'PagesController@services' );
-
-
-Route::resource('posts', 'PostsController');
-Route::resource('editor', 'CKEditorController');
-Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
-Route::delete('/posts/{id}', 'App\Http\Controllers\PostsController@destroy')->name('posts.destroy');
-
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+
 Route::post('profile','HomeController@update_avatar');
+Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
+Route::delete('/posts/{id}', 'PostsController@destroy')->name('posts.destroy');
+
