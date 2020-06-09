@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -182,5 +183,13 @@ class PostsController extends Controller
         
         $post->delete();
         return redirect('posts')->with('success','Post removed');
+    }
+
+    public function get_postPdf($id){
+
+        $post = Post::find($id);
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($this->show($id));
+        return $pdf->stream();
     }
 }

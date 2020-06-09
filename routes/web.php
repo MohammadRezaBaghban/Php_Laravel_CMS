@@ -24,7 +24,7 @@ Route::get('/', 'PagesController@index' );
 Route::get('/about', 'PagesController@about' );
 Route::get('/services', 'PagesController@services' );
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/posts/pdf/{id}','PostsController@get_postPdf');
 Route::post('profile','HomeController@update_avatar');
 Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
 Route::delete('/posts/{id}', 'PostsController@destroy')->name('posts.destroy');

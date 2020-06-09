@@ -18,9 +18,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('posts/', 'PostsApiController@index' );
 Route::get('posts/{id}', 'PostsApiController@show' );
-Route::delete('posts/{id}', 'PostsApiController@delete' );
-Route::put('posts/{id}','PostsApiController@update');
+Route::get('posts/', 'PostsApiController@index' );
 Route::post('posts/', 'PostsApiController@store' );
+Route::put('posts/{id}','PostsApiController@update');
+Route::delete('posts/{id}', 'PostsApiController@delete' );
+Route::any('errors','PostsApiController@ExtraError');
+
+
 

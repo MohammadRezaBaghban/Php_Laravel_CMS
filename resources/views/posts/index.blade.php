@@ -7,12 +7,14 @@
             <div class="card p-3 mt-3 mb-3">
                 <div class="row">
                     <div class="col-md-4 col-sm-4">
+                        <a href="{{url('posts/pdf/'.$post->id)}}" class="btn btn-secondary" style="align-self: center">Convert Into PDF</a>
                         <img  style="width:300px; height:300px" src="/storage/cover_image/{{$post->cover_image}}">
                     </div>
                     <div class="col-md-8 col-sm-8">
                         <h3><a href="/posts/{{$post->id}}">{{$post->title}}</a></h3>
                         <small> {!!substr($post->body,0,1000)!!} </small><br><hr>
                         <small>Written on {{$post->created_at}} by {{$post->user->name}}</small>
+                        <br>
                     </div>
                 </div>
             </div>

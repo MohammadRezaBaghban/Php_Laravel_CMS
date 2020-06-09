@@ -136,4 +136,13 @@ class PostsApiController extends Controller
             return response()->json(null,204); 
         }
     }
+
+    /**
+     * Handles other type (customized) of errors
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function ExtraError(){
+        return response()->json(['error' => ["customized error's message","e.g. payment is required!"]],501);   //5XX = server error; 501 = server doesn't know what to do!
+    }
 }
