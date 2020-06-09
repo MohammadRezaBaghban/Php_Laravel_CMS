@@ -5,7 +5,7 @@
 <br><a href="/posts" class="btn btn-primary">Go back</a>
 <a href="{{url('posts/pdf/'.$post->id)}}" class="btn btn-secondary">Convert Into PDF</a>
 <br><br>
-
+<br><br>
 <img style="width:300px;git" src="{{asset('storage/cover_image/'.$post->cover_image)}}">
 <br><br>
     <h1>{{$post->title}}</h1>
