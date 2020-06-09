@@ -186,7 +186,6 @@ class PostsController extends Controller
     }
 
     public function get_postPdf($id){
-
         $post = Post::find($id);
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($this->show($id));

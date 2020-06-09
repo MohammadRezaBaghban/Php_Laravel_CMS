@@ -6,7 +6,7 @@
 <a href="{{url('posts/pdf/'.$post->id)}}" class="btn btn-secondary">Convert Into PDF</a>
 <br><br>
 
-<img style="width:300px;git" src="/storage/cover_image/{{$post->cover_image}}">
+<img style="width:300px;git" src="{{asset('storage/cover_image/'.$post->cover_image)}}">
 <br><br>
     <h1>{{$post->title}}</h1>
     <div>   
