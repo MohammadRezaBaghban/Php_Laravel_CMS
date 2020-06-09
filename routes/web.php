@@ -22,11 +22,8 @@ Route::resource('editor', 'CKEditorController');
 
 Route::get('/', 'PagesController@index' );
 Route::get('/about', 'PagesController@about' );
-Route::get('/api/posts/', 'PostsApiController@index' );
-Route::get('/api/posts/{id}', 'PostsApiController@show' );
 Route::get('/services', 'PagesController@services' );
 Route::get('/home', 'HomeController@index')->name('home');
-
 
 Route::post('profile','HomeController@update_avatar');
 Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');

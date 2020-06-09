@@ -85,8 +85,19 @@ class PostsApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $post = Post::find($id);
+        //ensuring you send a json response if the post does not exist.
+        //(laravel sends an automatic html response instead)
+        if (is_null($post))
+        {
+            return response()->json("Given Post Has Not Found",404);
+        }
+        else
+        {
+            $post->delete(); 
+            return response()->json(null,204); 
+        }
     }
 }
