@@ -21,4 +21,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('posts/', 'PostsApiController@index' );
 Route::get('posts/{id}', 'PostsApiController@show' );
 Route::delete('posts/{id}', 'PostsApiController@delete' );
+Route::put('posts/{id}','PostsApiController@update');
+Route::post('posts/', 'PostsApiController@store' );
 
