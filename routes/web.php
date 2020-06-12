@@ -29,3 +29,11 @@ Route::post('profile','HomeController@update_avatar');
 Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
 Route::delete('/posts/{id}', 'PostsController@destroy')->name('posts.destroy');
 
+Route::get('/picture', function()
+{
+    $img = Image::make('foo.jpg')->resize(300, 200);
+
+    $img->save('bar.jpg', 60);
+
+    return $img->response('jpg');
+});

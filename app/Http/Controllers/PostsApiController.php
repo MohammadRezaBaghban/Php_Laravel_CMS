@@ -43,7 +43,7 @@ class PostsApiController extends Controller
             $post->title = $request->input('title');
             $post->body = $request->input('body');
             $post->user_id = 1;
-            $post->cover_image = $fileNameToStore;
+            $post->cover_image = $fileNameToStore->text('Fontys Recipes',120,500);
             $post->save();
             return response()->json($post,201); 
              // 201 = new resource created
