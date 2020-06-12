@@ -14,7 +14,7 @@ class AddProfilePicturesToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('avatar')->default('default.jpg');
+            $table->string('avatarUser')->default('default.jpg');
         });
     }
 
@@ -26,7 +26,7 @@ class AddProfilePicturesToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('avatar');
+            $table->dropColumn('avatarUser');
         });
     }
 }
