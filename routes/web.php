@@ -37,3 +37,9 @@ Route::get('/picture', function()
 
     return $img->response('jpg');
 });
+
+Route::prefix('admin')->group(function(){
+        Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+        Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+        Route::get('/admin', 'AdminController@index')->name('admin.dashboard');
+    });
